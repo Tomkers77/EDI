@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>WYKRESY DANYCH</title>
+    <link rel="stylesheet" href="style.css">    <!--załączamy style.css-->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> <!--załączamy chart.js-->
+
+</head>
+
+<body class="wykres_body">
+
+    <h3 class="wykres_h3">ILOŚĆ GIER DANEGO TYPU</h3>
+
+     <!--Tworzymy pierwszy wykres chart.js-->
+    <canvas class = "wykres1" id="myChart"></canvas>
+    <script>
+        
+        //Pobieramy dane z API
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET","https://my.api.mockaroo.com/Group_project.json?key=77a5f290",true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){     //Sprawdzamy odpowiedz serwera
+                var dane = JSON.parse(this.responseText);
+        
+        //Tworzymy 3 zmienne ktore beda zbierac ilosc gier danego typu 
+        single = 0
+        multi = 0
+        coop = 0
+        
+        //Petla zliczajaca kazdy typ gry
+        for(var i = 0; i < dane.length; i++) {
+            if (dane[i].type == "Singleplayer")
+            {
+                single+=1;
+            }
+            else {
+                if (dane[i].type == "Multiplayer")
+                {
+                    multi+=1;
+                }
+                else 
+                {
+                    if (dane[i].type == "Co-op")
+                    coop+=1;
+                }
+            }
+        }
+
+        const ctx = document.getElementById('myChart').getContext('2d');    //Pobieramy element canvas o id "myChart" i jego kontekst 2D, ctx - zmienna używana do tworzenia obiektu wykresu
+        const myChart = new Chart(ctx, {        //Tworzymy wykres
+            type: 'bar',
+            data: {
+                labels: ["Singleplayer","Multiplayer","Co-op"], //os x
+                datasets: [{
+                    label: 'Ilość gier danego typu',    //tytul wykresu
+                    data: [single,multi,coop],  //os y
+                    backgroundColor: "rgb(255,103,1)"
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'ILOŚĆ GIER DANEGO TYPU',
+                        font: {
+                            size: 20,
+                        }
+                    }
+                },
+            }
+        })
+    }
+        }
+
+    </script>
+
+<br><br><br><br><br><br><br>
+
+    <!--Tworzymy drugi wykres chart.js-->
+
+    <h3 class="wykres_h3">ILE GIER OBSŁUGUJE JĘZYK POLSKI</h3>
+
+    <canvas id="myChart2"></canvas>
+    <script class="wykres2">
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET","https://my.api.mockaroo.com/Group_project.json?key=77a5f290",true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var dane = JSON.parse(this.responseText);
+       
+        tak = 0
+        nie = 0
+
+        for(var i = 0; i < dane.length; i++) {
+            if (dane[i].polish_language == true)
+            {
+                tak+=1;
+            }
+            else 
+            {
+                if (dane[i].polish_language == false)
+                nie+=1;
+            }
+        }
+
+        const ctx = document.getElementById('myChart2').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["TAK","NIE"],
+                datasets: [{
+                    label: 'Ile gier obsługuje język polski',
+                    data: [tak,nie],
+                    backgroundColor: ["#003363","#008000"]
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'ILE GIER OBSŁUGUJE JĘZYK POLSKI',
+                        font: {
+                            size: 50,
+                        }
+                    }
+                },
+            }
+        });
+        }
+    }
+        
+    </script>
+
+<a href="index.html" class="wykres_button">POWROT</a>
+
+</body>
+</html>

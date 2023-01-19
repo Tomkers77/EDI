@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DANE</title>
+    <meta charset="utf-8">  <!--okreslamy kodowanie znakow-->
+    <link rel="stylesheet" href="style.css">    <!--załączamy style.css-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!--bootstrap do tabeli-->
+</head>
+
+<body class="dane_body">
+    <h1 class="dane_h1">DANE</h1>
+
+<br><br><br><br><br>
+    
+    <div class = "container-fluid"> <!--tworzymy element div, uzyta klasa tworzy pelnowymiarowy kontener-->
+
+    <!--Tworzymy tabele i nazwy kolumn-->
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>price</th>
+        <th>platform</th>
+        <th>type</th>
+        <th>genre</th>
+        <th>developer</th>
+        <th>release_date</th>
+        <th>DLC</th>
+        <th>polish_language</th>
+        <th>required_RAM</th>
+        <th>achievements</th>
+        <th>controller_support</th>
+        <th>rating</th>
+      </tr>
+    </thead>
+
+    <tbody class="dane_tabela" id="tabela">
+    
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET","https://my.api.mockaroo.com/Group_project.json?key=77a5f290",true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){   //Sprawdzamy odpowiedz serwer
+          var dane = JSON.parse(this.responseText);
+    
+        function UtworzTabele(dane){
+            var tabelka = document.getElementById('tabela')
+
+            //Petla ktora dodaje rzedy do tabeli
+            for (var i = 0; i < dane.length; i++){
+                var rzad = `<tr>
+                  <td>${dane[i].id}</td>
+                  <td>${dane[i].title}</td>
+                  <td>${dane[i].price}</td>
+                  <td>${dane[i].platform}</td>
+                  <td>${dane[i].type}</td>
+                  <td>${dane[i].genre}</td>
+                  <td>${dane[i].developer}</td>
+                  <td>${dane[i].release_date}</td>
+                  <td>${dane[i].DLC}</td>
+                  <td>${dane[i].polish_language}</td>
+                  <td>${dane[i].required_RAM}</td>
+                  <td>${dane[i].achievements}</td>
+                  <td>${dane[i].controller_support}</td>
+                  <td>${dane[i].rating}</td>
+                </tr>`
+                tabelka.innerHTML += rzad;    
+            } 
+        }
+    
+    UtworzTabele(dane)
+    
+    }
+}
+
+</script>
+</tbody>
+</table>
+</div>
+
+<a href="index.html" class="dane_button">POWROT</a>
+
+</body>
+</html>

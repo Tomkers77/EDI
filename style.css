@@ -1,0 +1,85 @@
+.start_body {
+    background-image: url("tło.png");
+}
+
+.start_button {
+  background-color: #ffffff;
+  border: none;
+  color: #000000;
+  padding: 50px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 60px;
+  margin: 80px 260px;
+  cursor: pointer;
+  text-shadow: 2px 2px 2px rgb(73, 72, 72);
+}
+
+.dane_button, .wykres_button {
+    background-color: #ffffff;
+    border: 3px solid  rgb(0, 40, 10);
+    color: #000000;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    text-shadow: 2px 2px 2px rgb(73, 72, 72);
+}
+
+.start_h2 {
+    font-size: 35px;
+    text-align: center;
+    border-radius: 25px;
+    background: #d6b708;
+    padding: 10px; 
+    width: 1885px;
+    height: 40px;  
+    text-shadow: 1px 1px 2px rgb(73, 72, 72);
+}
+
+.start_h1 {
+    text-align: center;
+    font-size: 100px;
+    text-shadow: 6px 6px 6px rgb(73, 72, 72);
+}
+
+.wykres_body{
+    background-image: url("wykres_tlo.png");
+}
+
+.container-fluid{
+    color: rgb(0, 99, 141);
+    font-size: 15px; 
+}
+
+.dane_h1{
+    text-align: center;
+    font-size: 100px;
+    text-shadow: 6px 6px 6px rgb(73, 72, 72);
+}
+
+.dane_body{
+    background-image: url("dane_tlo.jpg");
+}
+
+.dane_tabela{
+    border: 3px solid;
+}
+
+.dane_tabela td, #dane_tabela th {
+    border: 1px solid rgb(0, 40, 10);
+    padding: 8px;
+}
+
+.dane_tabela tr:nth-child(even){background-color:rgb(219, 234, 242);}
+
+.dane_tabela tr:hover {background-color:  rgb(174, 245, 193);}
+
+.wykres_h3{
+    text-align: center;
+    font-size: 50px;
+    text-shadow: 6px 6px 6px rgb(73, 72, 72);
+}
