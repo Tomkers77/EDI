@@ -38,12 +38,18 @@
     <tbody class="dane_tabela" id="tabela">
     
     <script>
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET","https://my.api.mockaroo.com/Group_project.json?key=77a5f290",true);
-        xmlhttp.send();
-        xmlhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){   //Sprawdzamy odpowiedz serwer
-          var dane = JSON.parse(this.responseText);
+        
+        //Podanie klucza do API
+        var klucz = prompt("Prosze podac klucz API: ")
+        fetch('https://my.api.mockaroo.com/Group_project.json',{
+          method: 'GET',
+          headers: {
+            'X-API-Key': klucz
+          }
+        }).then(response => response.json())
+        .then(data=>{
+            var dane = data
+        
     
         function UtworzTabele(dane){
             var tabelka = document.getElementById('tabela')
@@ -72,8 +78,9 @@
     
     UtworzTabele(dane)
     
-    }
-}
+         }
+        )
+  
 
 </script>
 </tbody>

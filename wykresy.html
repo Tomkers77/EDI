@@ -16,14 +16,16 @@
      <!--Tworzymy pierwszy wykres chart.js-->
     <canvas class = "wykres1" id="myChart"></canvas>
     <script>
-        
-        //Pobieramy dane z API
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET","https://my.api.mockaroo.com/Group_project.json?key=77a5f290",true);
-        xmlhttp.send();
-        xmlhttp.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){     //Sprawdzamy odpowiedz serwera
-                var dane = JSON.parse(this.responseText);
+       
+        var klucz = prompt("Prosze podac klucz API: ")
+        fetch('https://my.api.mockaroo.com/Group_project.json',{
+          method: 'GET',
+          headers: {
+            'X-API-Key': klucz
+          }
+        }).then(response => response.json())
+        .then(data=>{
+            var dane = data
         
         //Tworzymy 3 zmienne ktore beda zbierac ilosc gier danego typu 
         single = 0
@@ -77,8 +79,9 @@
                 },
             }
         })
-    }
-        }
+    })
+    
+        
 
     </script>
 
@@ -90,13 +93,15 @@
 
     <canvas id="myChart2"></canvas>
     <script class="wykres2">
-
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET","https://my.api.mockaroo.com/Group_project.json?key=77a5f290",true);
-        xmlhttp.send();
-        xmlhttp.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
-                var dane = JSON.parse(this.responseText);
+        
+        fetch('https://my.api.mockaroo.com/Group_project.json',{
+          method: 'GET',
+          headers: {
+            'X-API-Key': klucz
+          }
+        }).then(response => response.json())
+        .then(data=>{
+            var dane = data
        
         tak = 0
         nie = 0
@@ -141,8 +146,8 @@
                 },
             }
         });
-        }
-    }
+    })
+    
         
     </script>
 
